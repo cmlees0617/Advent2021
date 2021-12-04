@@ -7,7 +7,7 @@ public class December1 {
     public static void main(String[] args) {
         try{
             Scanner scan = new Scanner(
-                new File("C:\\Users\\Caleb Lees\\Documents\\NetBeansProjects\\Advent_Of_Code_2021\\December1_input.txt"));
+                new File("December1_input.txt"));
             Integer prevPrev = scan.nextInt();
             Integer prev = scan.nextInt();
             Integer curr = scan.nextInt();
