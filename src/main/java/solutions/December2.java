@@ -7,7 +7,7 @@ public class December2 {
     public static void main(String[] args) {
         try{
             Scanner scan = new Scanner(
-                new File("December2_input.txt"));
+                new File(".\\src\\December2_input.txt"));
             
             int hor = 0;
             int depth = 0;

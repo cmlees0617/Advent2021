@@ -7,7 +7,7 @@ public class December3 {
     public static void main(String[] args) {
         try{
             Scanner scan = new Scanner(
-                new File("December3_input.txt"));
+                new File(".\\src\\December3_input.txt"));
             
             ArrayList<String> OGR = new ArrayList();
             ArrayList<String> CO2 = new ArrayList();
