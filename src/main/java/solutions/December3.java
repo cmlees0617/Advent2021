@@ -1010,56 +1010,119 @@ public class December3 {
         
         ArrayList<String> OGR = new ArrayList();
         ArrayList<String> CO2 = new ArrayList();
-        int count = 0;
         
-        while(scan.hasNext()) {
-            String curr = scan.next();
+        while (scan.hasNext()) {
+            String curr = scan.nextLine();
             OGR.add(curr);
             CO2.add(curr);
         }
         
+        // loop through each digit in each number
         for (int i = 0; i < 12; i++) {
-            for (int j = 0; j < OGR.size(); j++) {
-                count += digit(OGR.get(j), i);
+            int num1s = 0;
+            int num0s = 0;
+            int numElements = 0;
+            
+            for (String s : OGR) {
+                if (s != null) {
+                    if (digit(s, i) == 1) {
+                        num1s++;
+                    }
+                    else {
+                        num0s++;
+                    }
+                    numElements++;
+                }
             }
-            if (count >= OGR.size() / 2) {
+            
+            if (numElements == 1) {
+                break;
+            }
+            
+            // if there were more 1's, null all numbers with 0's in ith place
+            if (num1s >= num0s) {
                 for (int j = 0; j < OGR.size(); j++) {
-                    if (OGR.size() > 1 && digit(OGR.get(j),i) == 0) {
-                        OGR.remove(j);
+                    if (OGR.get(j) != null) {
+                        if (digit(OGR.get(j),i) == 0 && OGR.size() > 1) {
+                            OGR.set(j, null);
+                        }
                     }
                 }
             }
             else {
                 for (int j = 0; j < OGR.size(); j++) {
-                    if (OGR.size() > 1 && digit(OGR.get(j),i) == 1) {
-                        OGR.remove(j);
+                    if (OGR.get(j) != null) {
+                        if (digit(OGR.get(j),i) == 1 && OGR.size() > 1) {
+                            OGR.set(j, null);
+                        }
                     }
                 }
             }
+        }
+        
+        for (int i = 0; i < 12; i++) {
+            int num1s = 0;
+            int num0s = 0;
+            int numElements = 0;
+            for (String s : CO2) {
+                if (s != null) {
+                    if (digit(s, i) == 1) {
+                        num1s++;
+                    }
+                    else {
+                        num0s++;
+                    }
+                    numElements++;
+                }
+            }
             
+            if (numElements == 1) {
+                break;
+            }
             
-            count = 0;
+            // if there were more 1's, null all numbers with 0's in ith place
+            if (num0s <= num1s) {
+                for (int j = 0; j < CO2.size(); j++) {
+                    if (CO2.get(j) != null) {
+                        if (digit(CO2.get(j),i) == 1 && CO2.size() > 1) {
+                            CO2.set(j, null);
+                        }
+                    }
+                }
+            }
+            else {
+                for (int j = 0; j < CO2.size(); j++) {
+                    if (CO2.get(j) != null) {
+                        if (digit(CO2.get(j),i) == 0 && CO2.size() > 1) {
+                            CO2.set(j, null);
+                        }
+                    }
+                }
+            }
         }
         
-        
-        for (String i : OGR) {
-            System.out.println(i);
+        for (String s : OGR) {
+            if (s != null) {
+                System.out.println(s);
+            }
         }
-        /*
-        System.out.print("\n");
         
-        for (String i : CO2) {
-            System.out.println(i);
+        System.out.println("\n");
+        
+        for (String s : CO2) {
+            if (s != null) {
+                System.out.println(s);
+            }
         }
-        */
+        
     }
     
-    private static int digit(String n, int m){
-        if (n.charAt(11 - m) == '1') {
-            return 1;
+    private static int digit(String s, int i) {
+            int d = 0;
+            if (s.charAt(i) == '1') {
+                return 1;
+            }
+            return d;
         }
-        else {
-            return 0;
-        }
-    }
+    
 }
